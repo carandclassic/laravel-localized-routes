@@ -6,6 +6,8 @@ use CodeZero\BrowserLocale\BrowserLocale;
 use CodeZero\LocalizedRoutes\LocalizedRoutesServiceProvider;
 use CodeZero\UriTranslator\UriTranslatorServiceProvider;
 use Illuminate\Config\Repository;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -47,7 +49,14 @@ abstract class TestCase extends BaseTestCase
         });
     }
 
-    protected function defineEnvironment($app)
+    /**
+     * Define the environment setup for the application.
+     *
+     * @param Application $app
+     *
+     * @return void
+     */
+    protected function defineEnvironment($app): void
     {
         $config = $app->make(Repository::class);
         $config->set([
