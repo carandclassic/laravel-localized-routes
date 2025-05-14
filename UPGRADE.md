@@ -1,6 +1,11 @@
 # Upgrade Guide
 
-## Upgrading To 4.0 From 3.x
+## Upgrading to 5.0 from 4.x
+
+- The minimum PHP version required is now 8.3
+- The minimum Laravel version required is now 11
+
+## Upgrading to 4.0 From 3.x
 
 ### ➡ Minimum Requirements Updated
 
@@ -20,7 +25,7 @@ This is now handled in `bootstrap/app.php`.
 
 If you use Laravel 11, register the middleware in `bootstrap/app.php` as described in the README.
 
-## Upgrading To 3.0 From 2.x
+## Upgrading to 3.0 From 2.x
 
 This upgrade contains a number of small but breaking changes, as well as a huge internal makeover.
 I listed the most important ones below.
