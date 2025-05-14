@@ -53,8 +53,8 @@ A convenient way to set up and use localized routes in a Laravel app.
 
 ## ✅ Requirements
 
-- PHP >= 8.1
-- Laravel >= 10
+- PHP >= 8.3
+- Laravel >= 11
 - Composer ^2.3 (for [codezero/composer-preload-files](https://github.com/codezero-be/composer-preload-files))
 
 ## ⬆ Upgrade
