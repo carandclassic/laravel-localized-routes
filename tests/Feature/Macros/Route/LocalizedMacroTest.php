@@ -96,7 +96,7 @@ final class LocalizedMacroTest extends TestCase
 
         $this->assertEquals(
             ['nl', 'nl/{slug}', '/', '{slug}'],
-            $this->getRoutes()->pluck('uri')->toArray()
+            $this->getRoutes()->where('uri', '!=', 'storage/{path}')->pluck('uri')->toArray()
         );
     }
 
