@@ -5,6 +5,9 @@ namespace CodeZero\LocalizedRoutes\Tests;
 use CodeZero\BrowserLocale\BrowserLocale;
 use CodeZero\LocalizedRoutes\LocalizedRoutesServiceProvider;
 use CodeZero\UriTranslator\UriTranslatorServiceProvider;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -17,13 +20,13 @@ use Illuminate\Testing\TestResponse;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\Assert;
 
-abstract class TestCase extends  BaseTestCase
+abstract class TestCase extends BaseTestCase
 {
-    protected $sessionKey;
-    protected $cookieName;
+    protected string $sessionKey;
+    protected string $cookieName;
 
     /**
-     * Setup the test environment.
+     * Set up the test environment.
      *
      * @return void
      */
@@ -31,13 +34,11 @@ abstract class TestCase extends  BaseTestCase
     {
         parent::setUp();
 
-        Config::set('app.key', Str::random(32));
-
         // Remove any default browser locales
         $this->setBrowserLocales(null);
 
-        $this->sessionKey = Config::get('localized-routes.session_key');
-        $this->cookieName = Config::get('localized-routes.cookie_name');
+        $this->sessionKey = Config::string('localized-routes.session_key');
+        $this->cookieName = Config::string('localized-routes.cookie_name');
 
         TestResponse::macro('assertResponseHasNoView', function () {
             if (isset($this->original) && $this->original instanceof View) {
@@ -46,6 +47,22 @@ abstract class TestCase extends  BaseTestCase
 
             return $this;
         });
+    }
+
+    /**
+     * Define the environment setup for the application.
+     *
+     * @param Application $app
+     *
+     * @return void
+     */
+    protected function defineEnvironment($app): void
+    {
+        $config = $app->make(Repository::class);
+        $config->set([
+            'app.key' => Str::random(32),
+            'filesystems.disks.local.serve' => false,
+        ]);
     }
 
     /**

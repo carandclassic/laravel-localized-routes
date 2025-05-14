@@ -1,6 +1,7 @@
 {
-    "name": "codezero/laravel-localized-routes",
+    "name": "carandclassic/laravel-localized-routes",
     "description": "A convenient way to set up, manage and use localized routes in a Laravel app.",
+    "type": "library",
     "keywords": [
         "php",
         "laravel",
@@ -20,20 +21,17 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.3",
+        "carandclassic/laravel-uri-translator": "^3.0",
         "codezero/browser-locale": "^3.0",
         "codezero/composer-preload-files": "^1.0",
-        "codezero/laravel-uri-translator": "^2.0",
         "codezero/php-url-builder": "^1.0",
-        "illuminate/support": "^10.0|^11.0"
+        "illuminate/support": "^11.0|^12.0.1"
     },
     "require-dev": {
         "mockery/mockery": "^1.3.3",
-        "orchestra/testbench": "^8.0|^9.0",
-        "phpunit/phpunit": "^10.5"
-    },
-    "scripts": {
-        "test": "phpunit"
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.5|^11.0"
     },
     "autoload": {
         "psr-4": {
@@ -44,6 +42,25 @@
         "psr-4": {
             "CodeZero\\LocalizedRoutes\\Tests\\": "tests"
         }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "github",
+            "url": "https://github.com/carandclassic/laravel-uri-translator"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "codezero/composer-preload-files": true
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
     },
     "extra": {
         "laravel": {
@@ -57,15 +74,5 @@
         "preload-files": [
             "src/helpers.php"
         ]
-    },
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true,
-        "allow-plugins": {
-            "codezero/composer-preload-files": true
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
