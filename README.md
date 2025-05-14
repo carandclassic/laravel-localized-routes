@@ -756,7 +756,7 @@ composer test
 
 ## 🔒 Security
 
-If you discover any security related issues, please [e-mail me](mailto:ivan@codezero.be) instead of using the issue tracker.
+If you discover any security-related issues, please [e-mail us](mailto:security@carandclassic.com) instead of using the issue tracker.
 
 ## 📑 Changelog
 
