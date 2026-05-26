@@ -1,7 +1,7 @@
 # Laravel Localized Routes
 
 [![GitHub release](https://img.shields.io/github/release/codezero-be/laravel-localized-routes.svg?style=flat-square)](https://github.com/codezero-be/laravel-localized-routes/releases)
-[![Laravel](https://img.shields.io/badge/laravel-11-red?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/laravel-12%7C13-red?style=flat-square&logo=laravel&logoColor=white)](https://laravel.com)
 [![License](https://img.shields.io/packagist/l/codezero/laravel-localized-routes.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/codezero-be/laravel-localized-routes/run-tests.yml?style=flat-square&logo=github&logoColor=white&label=tests)](https://github.com/codezero-be/laravel-localized-routes/actions)
 [![Code Coverage](https://img.shields.io/codacy/coverage/a5db8a1321664e67900c96eadc575ece/master?style=flat-square)](https://app.codacy.com/gh/codezero-be/laravel-localized-routes)
@@ -53,8 +53,8 @@ A convenient way to set up and use localized routes in a Laravel app.
 
 ## ✅ Requirements
 
-- PHP >= 8.3
-- Laravel >= 11
+- PHP >= 8.4
+- Laravel >= 12
 - Composer ^2.3 (for [codezero/composer-preload-files](https://github.com/codezero-be/composer-preload-files))
 
 ## ⬆ Upgrade
@@ -159,8 +159,6 @@ Make sure to add it after `StartSession` and before `SubstituteBindings`.
 The order of the middleware is important if you are using localized route keys (translated slugs)!
 The session needs to be active when setting the locale, and the locale needs to be set when substituting the route bindings.
 
-### Laravel 11 and newer:
-
 Add the middleware to the `web` middleware group in `bootstrap/app.php`.
 
 ```php
@@ -174,23 +172,6 @@ Add the middleware to the `web` middleware group in `bootstrap/app.php`.
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ]);
 })
-```
-
-### Laravel 10:
-
-Add the middleware to the `web` middleware group in `app/Http/Kernel.php`.
-
-```php
-// app/Http/Kernel.php
-protected $middlewareGroups = [
-    'web' => [
-        //...
-        \Illuminate\Session\Middleware\StartSession::class, // <= after this
-        //...
-        \CodeZero\LocalizedRoutes\Middleware\SetLocale::class,
-        \Illuminate\Routing\Middleware\SubstituteBindings::class, // <= before this
-    ],
-];
 ```
 
 ### Detectors
